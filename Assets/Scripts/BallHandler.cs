@@ -5,11 +5,11 @@ using UnityEngine.InputSystem;
 
 public class BallHandler : MonoBehaviour
 {
-
+    private Camera mainCamera;
 
     void Start()
     {
-        
+        mainCamera = Camera.main;
     }
 
     void Update()
@@ -18,9 +18,8 @@ public class BallHandler : MonoBehaviour
         {
             return;
         }
-
         Vector2 touchPosition = Touchscreen.current.primaryTouch.position.ReadValue();
-
-        Debug.Log(touchPosition);
+        Vector3 worldPosition = mainCamera.ScreenToWorldPoint(touchPosition);
+        Debug.Log(worldPosition);
     }
 }
